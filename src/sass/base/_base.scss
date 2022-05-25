@@ -23,3 +23,9 @@ a {
 body {
 	background: $backgroundMain;
 }
+
+.ml-base-containert {
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
+}
