@@ -9,11 +9,17 @@ export default function Header() {
 			<header className='ml-header-content-main'>
 				<div className='ml-base-containert'>
 					<Row>
-						<Col span={2} offset={2} xs={{ offset: 1 }}>
+						<Col span={2}>
 							<Logo mlClass={'ml-header-logo-main'} />
 						</Col>
 						<Col offset={2} xs={{ span: 16 }} md={{ span: 12 }}>
 							<Search />
+						</Col>
+						<Col offset={1} xs={{ span: 4 }} md={{ span: 3 }}>
+							<img
+								className='ml-header-img-banner'
+								src='https://http2.mlstatic.com/D_NQ_602055-MLA49875786788_052022-OO.png'
+							/>
 						</Col>
 					</Row>
 				</div>

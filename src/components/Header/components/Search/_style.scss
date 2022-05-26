@@ -4,7 +4,7 @@
 
 .ml-header-search-input {
 	background-color: $colorWhite;
-	border-radius: $border-ml;
+	border-radius: $borderMl;
 	height: 40px;
 	padding: 7px 60px 7px 15px;
 	border-color: transparent;
@@ -28,6 +28,7 @@
 	span {
 		color: $secondColor;
 		font-size: 18px;
+		margin-top: 10px;
 	}
 	::before {
 		content: '';
@@ -41,9 +42,11 @@
 }
 
 .ml-header-search-result-content {
+	z-index: 1;
+	position: relative;
 	background-color: $colorWhite;
 	box-shadow: $searchInputShadow;
-	border-radius: 0 0 $border-ml $border-ml;
+	border-radius: 0 0 $borderMl $borderMl;
 	padding: 5px 0;
 	li {
 		cursor: pointer;

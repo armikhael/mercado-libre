@@ -27,7 +27,7 @@ export default function SearchInput() {
 					}
 					placeholder='Buscar productos, marcas y más…'
 				/>
-				<Button className='ml-header-search-button' htmlType='submit'>
+				<Button className='ml-header-search-button' htmlType='submit' href={`/results/kdsdjk`}>
 					<SearchOutlined />
 				</Button>
 			</div>
