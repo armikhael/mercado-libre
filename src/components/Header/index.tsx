@@ -9,10 +9,10 @@ export default function Header() {
 			<header className='ml-header-content-main'>
 				<div className='ml-base-containert'>
 					<Row>
-						<Col span={2} offset={2}>
+						<Col span={2} offset={2} xs={{ offset: 1 }}>
 							<Logo mlClass={'ml-header-logo-main'} />
 						</Col>
-						<Col span={18} offset={2}>
+						<Col offset={2} xs={{ span: 16 }} md={{ span: 12 }}>
 							<Search />
 						</Col>
 					</Row>
