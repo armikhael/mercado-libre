@@ -1,19 +1,22 @@
 import { RightOutlined } from '@ant-design/icons'
 
-export default function Breadcrumb() {
+export default function Breadcrumb(props: any) {
+	console.log(props.breadcrumb)
+
 	return (
 		<>
-			<section className='ml-breadcrumb-keywords-content'>
-				<ul>
-					<li>
-						Computación <RightOutlined />
-					</li>
-					<li>
-						Notebooks y Accesorios <RightOutlined />
-					</li>
-					<li>Notebooks</li>
-				</ul>
-			</section>
+			{props.breadcrumb && (
+				<section className='ml-breadcrumb-keywords-content'>
+					<ul>
+						{props.breadcrumb.map((item: any, index: any) => (
+							<li key={index}>
+								{item.name}
+								{props.breadcrumb.length != index + 1 && <RightOutlined />}
+							</li>
+						))}
+					</ul>
+				</section>
+			)}
 		</>
 	)
 }

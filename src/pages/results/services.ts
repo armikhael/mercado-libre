@@ -1,15 +1,12 @@
 import axios from 'axios'
 import { notification } from 'antd'
 
-export default async function servicesAutosuggest(item: any) {
+export default async function servicesResults(item: any) {
 	let responses
 	await axios({
 		method: 'GET',
-		url: `${import.meta.env.VITE_APP_API_MERCADOLIBRE}/sites/${import.meta.env.VITE_APP_SITE_ID}/autosuggest`,
+		url: `${import.meta.env.VITE_APP_API_MERCADOLIBRE}/sites/${import.meta.env.VITE_APP_SITE_ID}/search`,
 		params: {
-			showFilters: true,
-			limit: 6,
-			api_version: 2,
 			q: item,
 		},
 	})

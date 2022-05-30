@@ -14,7 +14,7 @@ export default function Router() {
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route path='/product-detail/:id' element={<ProductDetail />} />
-					<Route path='/results/:query' element={<Results />} />
+					<Route path='/results/:search' element={<Results />} />
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</Layout>

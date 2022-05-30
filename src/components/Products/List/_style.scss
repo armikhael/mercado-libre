@@ -17,22 +17,24 @@
 	border-bottom: thin solid $backgroundMain;
 	padding: 20px 50px 20px 0;
 }
-.ml-products-list-img-main {
-	width: 100%;
-	max-width: 100%;
-	border-radius: $borderRadius4;
+.ml-products-list-img-conent {
 	padding: 20px;
 	@media only screen and (max-width: $mediaTable) {
 		padding: 5px;
 	}
 }
+.ml-products-list-img-main {
+	width: 100%;
+	max-width: 100%;
+	border-radius: $borderRadius4;
+}
 .ml-product-list-title {
 	font-size: 20px;
-	font-weight: $fontWeightRegular;
+	font-weight: $fontWeightlight;
 	margin-bottom: 0px;
 	color: $titleColor;
 	@media only screen and (max-width: $mediaTable) {
-		font-size: 18px;
+		font-size: 16px;
 	}
 }
 .ml-product-list-seller {
@@ -42,17 +44,26 @@
 	margin-top: -3px;
 	margin-bottom: 5px;
 }
+.ml-product-list-original-price {
+	color: $secondColor;
+	font-size: 12px;
+	font-weight: 300;
+	text-decoration: line-through;
+}
 .ml-product-list-price {
 	font-size: 24px;
-	font-weight: 300;
+	font-weight: $fontWeightRegular;
 	color: $titleColor;
+}
+.ml-product-list-installments {
+	color: $mainThirdColor;
 }
 .ml-product-list-tags {
 	margin-top: 8px;
 	span {
 		font-size: 12px;
 		background-color: #e6f7ee;
-		color: #00a650;
+		color: $mainThirdColor;
 		padding: 3px 10px;
 		font-weight: 600;
 		border-radius: $borderRadius4;
