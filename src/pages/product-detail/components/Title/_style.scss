@@ -1,0 +1,23 @@
+.ml-product-detail-new {
+	color: $secondColor;
+	font-size: $fontSize14;
+	font-weight: $fontWeightlight;
+}
+.ml-product-detail-title {
+	font-size: 24px;
+	font-weight: $fontWeightSemibold;
+	margin-bottom: 0px;
+	color: $titleColor;
+	line-height: 1.2;
+	margin-bottom: 5px;
+}
+.ml-product-detail-seller {
+	font-size: $fontSize14;
+	color: $secondColor;
+	font-weight: $fontWeightlight;
+	margin-top: -3px;
+	margin-bottom: 5px;
+	span {
+		padding: 5px;
+	}
+}

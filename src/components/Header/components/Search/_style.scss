@@ -4,7 +4,7 @@
 
 .ml-header-search-input {
 	background-color: $colorWhite;
-	border-radius: $borderMl;
+	border-radius: $borderRadius2;
 	height: 40px;
 	padding: 7px 60px 7px 15px;
 	border-color: transparent;
@@ -46,7 +46,7 @@
 	position: relative;
 	background-color: $colorWhite;
 	box-shadow: $searchInputShadow;
-	border-radius: 0 0 $borderMl $borderMl;
+	border-radius: 0 0 $borderRadius2 $borderRadius2;
 	padding: 5px 0;
 	li {
 		cursor: pointer;

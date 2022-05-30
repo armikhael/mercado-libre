@@ -1,9 +1,9 @@
 import { RightOutlined } from '@ant-design/icons'
 
-export default function Navigation() {
+export default function Breadcrumb() {
 	return (
 		<>
-			<section className='ml-navigation-keywords-content'>
+			<section className='ml-breadcrumb-keywords-content'>
 				<ul>
 					<li>
 						Computación <RightOutlined />
