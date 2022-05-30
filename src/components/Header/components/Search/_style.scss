@@ -30,7 +30,7 @@
 		font-size: 18px;
 		margin-top: 10px;
 	}
-	::before {
+	.ml-header-button-line::before {
 		content: '';
 		display: block;
 		height: 26px;
@@ -49,11 +49,13 @@
 	border-radius: 0 0 $borderRadius2 $borderRadius2;
 	padding: 5px 0;
 	li {
+		font-size: 16px;
 		cursor: pointer;
-		font-weight: 500;
-		padding: 5px 10px;
+		font-weight: $fontWeightlight;
+		padding: 7px 10px;
 		&:hover,
-		&:hover span {
+		&:hover span,
+		&:hover a {
 			background-color: $mainSecondColor;
 			color: $colorWhite;
 		}
@@ -62,5 +64,19 @@
 			margin-right: 10px;
 			margin-left: 5px;
 		}
+	}
+	hr {
+		display: block;
+		height: 1px;
+		border: 0;
+		border-top: 1px solid $backgroundMain;
+		margin: 10px auto;
+		padding-bottom: 5px;
+		width: 97%;
+	}
+	.ml-header-search-title-oficial-store {
+		color: $secondColor;
+		font-size: $fontSize14;
+		padding: 5px 15px;
 	}
 }

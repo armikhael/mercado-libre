@@ -28,6 +28,7 @@ export default function SearchInput() {
 					placeholder='Buscar productos, marcas y más…'
 				/>
 				<Button className='ml-header-search-button' htmlType='submit' href={`/results/kdsdjk`}>
+					<span className='ml-header-button-line'></span>
 					<SearchOutlined />
 				</Button>
 			</div>
@@ -47,6 +48,19 @@ export default function SearchInput() {
 					</li>
 					<li>
 						<ClockCircleOutlined /> Hola
+					</li>
+				</ul>
+				<hr />
+				<ul>
+					<div className='ml-header-search-title-oficial-store'>Tiendas Oficiales</div>
+					<li>
+						<SearchOutlined /> Macbook en <a>Tienda oficial Apple</a>
+					</li>
+					<li>
+						<SearchOutlined /> Macbook en <a>Tienda oficial Apple</a>
+					</li>
+					<li>
+						<SearchOutlined /> Macbook en <a>Tienda oficial Apple</a>
 					</li>
 				</ul>
 			</div>
