@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import { Input, Button, Form } from 'antd'
 import { SearchOutlined, ClockCircleOutlined } from '@ant-design/icons'
@@ -57,9 +57,11 @@ export default function SearchInput() {
 					<div className='ml-header-search-result-content' style={focus ? { display: 'block' } : { display: 'none' }}>
 						<ul>
 							{result.slice(0, 6).map((item: any, index: any) => (
-								<li key={index}>
-									<ClockCircleOutlined /> {item.q}
-								</li>
+								<Link className='ml-header-search-result-link' to={`/results/${item.q}`} key={index}>
+									<li>
+										<ClockCircleOutlined /> {item.q}
+									</li>
+								</Link>
 							))}
 						</ul>
 						{result.length > 7 && (
