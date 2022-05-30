@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
 	readonly VITE_APP_IMG_BBP: string
+	readonly VITE_APP_API_MERCADOLIBRE: string
 	// more env variables...
 }
 

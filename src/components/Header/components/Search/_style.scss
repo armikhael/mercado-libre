@@ -1,7 +1,9 @@
 .ml-header-search-content {
 	position: relative;
 }
-
+.ml-header-search-input-content {
+	margin-bottom: 0.5px;
+}
 .ml-header-search-input {
 	background-color: $colorWhite;
 	border-radius: $borderRadius2;
@@ -17,18 +19,17 @@
 		outline: 0;
 	}
 }
-
 .ml-header-search-button {
 	background-color: transparent;
 	position: absolute;
 	right: 0;
+	top: 0;
 	height: 40px;
 	box-shadow: none;
 	border: 0px solid transparent;
 	span {
 		color: $secondColor;
 		font-size: 18px;
-		margin-top: 10px;
 	}
 	.ml-header-button-line::before {
 		content: '';
@@ -40,7 +41,6 @@
 		left: 0px;
 	}
 }
-
 .ml-header-search-result-content {
 	z-index: 1;
 	position: relative;
