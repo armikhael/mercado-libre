@@ -12,4 +12,7 @@ export default defineConfig({
 			'@utilities': path.resolve('./src/utilities'),
 		},
 	},
+	server: {
+		hmr: { overlay: true },
+	},
 })

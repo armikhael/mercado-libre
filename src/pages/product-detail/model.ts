@@ -5,4 +5,6 @@ export interface Detail {
 	shipping: any
 	title: string
 	thumbnail_id: string
+	description: string
+	permalink: string
 }

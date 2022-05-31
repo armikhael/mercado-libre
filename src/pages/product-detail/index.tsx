@@ -8,6 +8,8 @@ import { formatPrice } from '@utilities/format-price'
 
 import Images from '@components/Images'
 import Breadcrumb from '@/components/Breadcrumb'
+import Head from '@components/Head'
+
 import Title from './components/Title'
 
 import { Detail } from './model'
@@ -33,6 +35,17 @@ export default function ProductDetail() {
 		<>
 			{result && (
 				<div className='ml-base-containert'>
+					<Head
+						title={result.title}
+						name={'description'}
+						content={result.description}
+						property={{
+							title: result.title,
+							type: 'product',
+							url: result.permalink,
+							image: `${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${result.thumbnail_id}-F.png`,
+						}}
+					/>
 					<Breadcrumb />
 					<div className='ml-product-detail-content-main'>
 						<Row>
@@ -71,16 +84,12 @@ export default function ProductDetail() {
 											{formatPrice('25353', result.currency_id)} sin interes
 										</span>
 									</div>
-									{result.shipping && (
-										<>
-											{result.shipping.free_shipping && (
-												<div className='ml-product-detail-tags'>
-													<span>
-														<CarOutlined /> Llega gratis mañana
-													</span>
-												</div>
-											)}
-										</>
+									{result.shipping.free_shipping && (
+										<div className='ml-product-detail-tags'>
+											<span>
+												<CarOutlined /> Llega gratis mañana
+											</span>
+										</div>
 									)}
 									<br />
 									<Button className='ml-product-detail-btn-buy' type='primary'>
@@ -91,14 +100,18 @@ export default function ProductDetail() {
 							<Col xs={24} sm={24} md={17} lg={17} xl={17}>
 								<div className='ml-product-detail-description-content'>
 									<h3>Descripción</h3>
-									<p>
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-										industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-										and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-										leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-										with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-										publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-									</p>
+									{result.description ? (
+										<p>{result.description}</p>
+									) : (
+										<p>
+											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+											the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+											type and scrambled it to make a type specimen book. It has survived not only five centuries, but
+											also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in
+											the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
+											with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+										</p>
+									)}
 								</div>
 							</Col>
 						</Row>

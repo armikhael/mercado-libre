@@ -3,7 +3,7 @@ export default function Title(props: any) {
 		<>
 			<div>
 				<span className='ml-product-detail-new'>
-					Nuevo <span>|</span> 1221 vendidos
+					{props.result.condition} <span>|</span> {props.result.sold_quantity} vendidos
 				</span>
 			</div>
 			<h1 className='ml-product-detail-title'>{props.result.title}</h1>
