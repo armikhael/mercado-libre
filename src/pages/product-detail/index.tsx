@@ -13,20 +13,24 @@ import Head from '@components/Head'
 import Title from './components/Title'
 
 import { Detail } from './model'
-import servicesDetailProduct from './services'
+import services from './services'
 
 export default function ProductDetail() {
 	let { id } = useParams()
 	const [result, setResult] = useState<Detail>()
+	const [filter, setFilters] = useState([])
 	const [mobile, setMobile] = useState(false)
 
 	useEffect(() => {
 		if (window.innerWidth < 768) {
 			setMobile(true)
 		}
-		servicesDetailProduct(id).then((response: any) => {
+		services.servicesProduct(id).then((response: any) => {
 			if (response) {
 				setResult(response)
+				services.servicesCategory(response.category_id).then((response: any) => {
+					setFilters(response.path_from_root)
+				})
 			}
 		})
 	}, [])
@@ -46,7 +50,7 @@ export default function ProductDetail() {
 							image: `${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${result.thumbnail_id}-F.png`,
 						}}
 					/>
-					<Breadcrumb />
+					<Breadcrumb breadcrumb={filter} />
 					<div className='ml-product-detail-content-main'>
 						<Row>
 							<Col xs={24} sm={12} md={17} lg={17} xl={17}>
