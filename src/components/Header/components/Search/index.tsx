@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
 
 import { Input, Button, Form } from 'antd'
 import { SearchOutlined, ClockCircleOutlined } from '@ant-design/icons'
@@ -7,7 +6,6 @@ import { SearchOutlined, ClockCircleOutlined } from '@ant-design/icons'
 import servicesAutosuggest from './services'
 
 export default function SearchInput() {
-	let history = useNavigate()
 	const [form] = Form.useForm()
 	const [result, setResult] = useState([])
 	const [focus, setFocus] = useState(false)
@@ -24,7 +22,7 @@ export default function SearchInput() {
 
 	const handleSumit = (item: any) => {
 		if (item) {
-			history(`/results/${item.search}`)
+			window.location.href = window.location.origin + `/results/${item.search}`
 		}
 	}
 
@@ -57,11 +55,11 @@ export default function SearchInput() {
 					<div className='ml-header-search-result-content' style={focus ? { display: 'block' } : { display: 'none' }}>
 						<ul>
 							{result.slice(0, 6).map((item: any, index: any) => (
-								<Link className='ml-header-search-result-link' to={`/results/${item.q}`} key={index}>
+								<a className='ml-header-search-result-link' href={`/results/${item.q}`} key={index}>
 									<li>
 										<ClockCircleOutlined /> {item.q}
 									</li>
-								</Link>
+								</a>
 							))}
 						</ul>
 						{result.length > 7 && (

@@ -1,8 +1,6 @@
 import { RightOutlined } from '@ant-design/icons'
 
 export default function Breadcrumb(props: any) {
-	console.log(props.breadcrumb)
-
 	return (
 		<>
 			{props.breadcrumb && (

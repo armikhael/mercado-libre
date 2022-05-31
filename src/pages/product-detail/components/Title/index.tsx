@@ -1,4 +1,4 @@
-export default function Title() {
+export default function Title(props: any) {
 	return (
 		<>
 			<div>
@@ -6,8 +6,8 @@ export default function Title() {
 					Nuevo <span>|</span> 1221 vendidos
 				</span>
 			</div>
-			<h1 className='ml-product-detail-title'>Parrilla Eléctrica Thomas Th-224 1650w</h1>
-			<p className='ml-product-detail-seller'>Vendido por Thomas</p>
+			<h1 className='ml-product-detail-title'>{props.result.title}</h1>
+			<p className='ml-product-detail-seller'>Vendido por {props.result.seller_id}</p>
 		</>
 	)
 }

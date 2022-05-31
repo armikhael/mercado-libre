@@ -12,7 +12,7 @@ export default function ProductsList(props: any) {
 			<div className='ml-products-list-content-main'>
 				<Row className='ml-products-list-content'>
 					<Col xs={9} sm={9} md={4} lg={4} xl={4} className='ml-products-list-img-conent'>
-						<Link to={`/product-detail/dfhhfudsfhu`}>
+						<Link to={`/product-detail/${props.detail.id}`}>
 							<Images
 								classImage={'ml-products-list-img-main'}
 								webp={`${import.meta.env.VITE_APP_IMAGES}/D_${props.detail.thumbnail_id}-V.webp`}
@@ -25,7 +25,7 @@ export default function ProductsList(props: any) {
 						</Link>
 					</Col>
 					<Col xs={15} sm={15} md={20} lg={20} xl={20}>
-						<Link to={`/product-detail/dfhhfudsfhu`}>
+						<Link to={`/product-detail/${props.detail.id}`}>
 							<h2 className='ml-product-list-title'>{props.detail.title}</h2>
 						</Link>
 						<p className='ml-product-list-seller'>Vendido por {props.detail.seller.id}</p>
