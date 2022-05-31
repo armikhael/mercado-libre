@@ -21,7 +21,7 @@ export default function SearchInput() {
 	}
 
 	const handleSumit = (item: any) => {
-		if (item) {
+		if (item.search) {
 			window.location.href = window.location.origin + `/results/${item.search}`
 		}
 	}
@@ -46,7 +46,7 @@ export default function SearchInput() {
 					</Form.Item>
 					<Button className='ml-header-search-button' htmlType='submit'>
 						<span className='ml-header-button-line'></span>
-						<SearchOutlined />
+						<SearchOutlined className='ml-header-search-icon' />
 					</Button>
 				</Form>
 			</div>

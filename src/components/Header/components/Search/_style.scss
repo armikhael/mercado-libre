@@ -27,9 +27,13 @@
 	height: 40px;
 	box-shadow: none;
 	border: 0px solid transparent;
+	padding: 4px 12px;
 	span {
 		color: $secondColor;
 		font-size: 18px;
+	}
+	.ml-header-search-icon {
+		margin-left: 4px !important;
 	}
 	.ml-header-button-line::before {
 		content: '';
@@ -39,6 +43,12 @@
 		position: absolute;
 		top: 6.5px;
 		left: 0px;
+	}
+	&:focus > span {
+		position: initial !important;
+	}
+	&:focus {
+		border-color: transparent;
 	}
 }
 .ml-header-search-result-content {
