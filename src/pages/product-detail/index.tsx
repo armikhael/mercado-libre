@@ -20,6 +20,8 @@ export default function ProductDetail() {
 	const [result, setResult] = useState<Detail>()
 	const [filter, setFilters] = useState([])
 	const [mobile, setMobile] = useState(false)
+	const [image, setImage] = useState()
+	const [visible, setVisible] = useState(true)
 
 	useEffect(() => {
 		if (window.innerWidth < 768) {
@@ -28,6 +30,7 @@ export default function ProductDetail() {
 		services.servicesProduct(id).then((response: any) => {
 			if (response) {
 				setResult(response)
+				setImage(response.thumbnail_id)
 				services.servicesCategory(response.category_id).then((response: any) => {
 					setFilters(response.path_from_root)
 				})
@@ -53,19 +56,41 @@ export default function ProductDetail() {
 					<Breadcrumb breadcrumb={filter} />
 					<div className='ml-product-detail-content-main'>
 						<Row>
-							<Col xs={24} sm={12} md={17} lg={17} xl={17}>
-								{mobile && <Title result={result} />}
-								<Images
-									classImage={'ml-products-list-img-main'}
-									webp={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${result.thumbnail_id}-F.webp`}
-									jp2={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${result.thumbnail_id}-F.jp2`}
-									jxr={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${result.thumbnail_id}-F.jxr`}
-									default={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${result.thumbnail_id}-F.png`}
-									alt={result.title}
-									title={result.title}
-								/>
+							<Col xs={0} sm={0} md={1} lg={1} xl={1}>
+								{result.pictures.slice(0, 6).map((item: any, index: any) => (
+									<div
+										className={'ml-product-detail-img-list-content'}
+										key={index}
+										onMouseEnter={() => setImage(item.id)}
+										style={image === item.id ? { border: '2px solid #3483fa' } : { position: 'relative' }}>
+										<Images
+											classImage={'ml-product-detail-img-list'}
+											webp={`${import.meta.env.VITE_APP_IMAGES}/D_Q_NP_614885-${item.id}-R.webp`}
+											jp2={`${import.meta.env.VITE_APP_IMAGES}/D_Q_NP_614885-${item.id}-R.jp2`}
+											jxr={`${import.meta.env.VITE_APP_IMAGES}/D_Q_NP_614885-${item.id}-R.jxr`}
+											default={`${import.meta.env.VITE_APP_IMAGES}/D_Q_NP_614885-${item.id}-R.png`}
+											alt={result.title}
+											title={result.title}
+										/>
+									</div>
+								))}
 							</Col>
-							<Col xs={24} sm={12} md={7} lg={7} xl={7}>
+							<Col xs={24} sm={12} md={15} lg={15} xl={15}>
+								{mobile && <Title result={result} />}
+								<div className='ml-product-detail-img-main-content'>
+									<Images
+										classImage={'ml-product-detail-img-main'}
+										webp={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${image}-F.webp`}
+										jp2={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${image}-F.jp2`}
+										jxr={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${image}-F.jxr`}
+										default={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${image}-F.png`}
+										alt={result.title}
+										title={result.title}
+									/>
+								</div>
+							</Col>
+							<Col xs={0} sm={0} md={1} lg={1} xl={1}></Col>
+							<Col xs={24} sm={12} md={7} lg={7} xl={7} className='ml-product-detail-features-content'>
 								<div className='ml-product-detail-features'>
 									<HeartOutlined className='ml-product-detail-icon-heart' />
 									{!mobile && <Title result={result} />}
@@ -101,7 +126,8 @@ export default function ProductDetail() {
 									</Button>
 								</div>
 							</Col>
-							<Col xs={24} sm={24} md={17} lg={17} xl={17}>
+							<Col xs={0} sm={0} md={1} lg={1} xl={1}></Col>
+							<Col xs={24} sm={24} md={15} lg={15} xl={15}>
 								<div className='ml-product-detail-description-content'>
 									<h3>Descripción</h3>
 									{result.description ? (

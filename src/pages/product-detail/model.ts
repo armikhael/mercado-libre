@@ -7,4 +7,5 @@ export interface Detail {
 	thumbnail_id: string
 	description: string
 	permalink: string
+	pictures: any
 }
