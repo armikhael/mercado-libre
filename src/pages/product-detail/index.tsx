@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { Row, Col, Button } from 'antd'
 import { CarOutlined, HeartOutlined } from '@ant-design/icons'
 
-import { formatPrice } from '@utilities/format-price'
+import { formatPrice } from '@/utilities/format-price.utilities'
 
 import Images from '@components/Images'
 import Breadcrumb from '@/components/Breadcrumb'

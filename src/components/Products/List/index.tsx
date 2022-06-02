@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Row, Col } from 'antd'
 import { HeartOutlined } from '@ant-design/icons'
 
-import { formatPrice } from '@utilities/format-price'
+import { formatPrice } from '@/utilities/format-price.utilities'
 
 import Images from '@components/Images'
 
