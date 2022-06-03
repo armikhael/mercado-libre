@@ -11,7 +11,7 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Head from '@components/Head'
 
 import Title from './components/Title'
-
+import { ImageListContent } from './styled.component'
 import { Detail } from './model'
 import services from './services'
 
@@ -20,7 +20,7 @@ export default function ProductDetail() {
 	const [result, setResult] = useState<Detail>()
 	const [filter, setFilters] = useState([])
 	const [mobile, setMobile] = useState(false)
-	const [image, setImage] = useState()
+	const [image, setImage] = useState('')
 
 	useEffect(() => {
 		if (window.innerWidth < 768) {
@@ -57,11 +57,12 @@ export default function ProductDetail() {
 						<Row>
 							<Col xs={0} sm={0} md={1} lg={1} xl={1}>
 								{result.pictures.slice(0, 6).map((item: any, index: any) => (
-									<div
-										className={'ml-product-detail-img-list-content'}
+									<ImageListContent
+										id={item.id}
+										name={image}
 										key={index}
 										onMouseEnter={() => setImage(item.id)}
-										style={image === item.id ? { border: '2px solid #3483fa' } : { position: 'relative' }}>
+										className={'ml-product-detail-img-list-content'}>
 										<Images
 											classImage={'ml-product-detail-img-list'}
 											webp={`${import.meta.env.VITE_APP_IMAGES}/D_Q_NP_614885-${item.id}-R.webp`}
@@ -71,7 +72,7 @@ export default function ProductDetail() {
 											alt={result.title}
 											title={result.title}
 										/>
-									</div>
+									</ImageListContent>
 								))}
 							</Col>
 							<Col xs={24} sm={12} md={15} lg={15} xl={15}>
