@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Input, Button, Form } from 'antd'
 import { SearchOutlined, ClockCircleOutlined } from '@ant-design/icons'
 
+import { ContentSearchResult } from './styled.component'
 import servicesAutosuggest from './services'
 
 export default function SearchInput() {
@@ -52,33 +53,35 @@ export default function SearchInput() {
 			</div>
 			{result.length > 0 && (
 				<>
-					<div className='ml-header-search-result-content' style={focus ? { display: 'block' } : { display: 'none' }}>
-						<ul>
-							{result.slice(0, 6).map((item: any, index: any) => (
-								<a className='ml-header-search-result-link' href={`/results/${item.q}`} key={index}>
-									<li>
-										<ClockCircleOutlined /> {item.q}
-									</li>
-								</a>
-							))}
-						</ul>
-						{result.length > 7 && (
-							<>
-								<hr />
-								<ul>
-									<div className='ml-header-search-title-oficial-store'>Tiendas Oficiales</div>
-									{result.slice(6, 9).map((item: any, index: any) => (
-										<li key={index}>
-											<SearchOutlined /> {item.q} en{' '}
-											<a>
-												{item.filters[0].name} {item.filters[0].values[0].name}
-											</a>
+					<ContentSearchResult visible={focus}>
+						<div className='ml-header-search-result-content'>
+							<ul>
+								{result.slice(0, 6).map((item: any, index: any) => (
+									<a className='ml-header-search-result-link' href={`/results/${item.q}`} key={index}>
+										<li>
+											<ClockCircleOutlined /> {item.q}
 										</li>
-									))}
-								</ul>
-							</>
-						)}
-					</div>
+									</a>
+								))}
+							</ul>
+							{result.length > 7 && (
+								<>
+									<hr />
+									<ul>
+										<div className='ml-header-search-title-oficial-store'>Tiendas Oficiales</div>
+										{result.slice(6, 9).map((item: any, index: any) => (
+											<li key={index}>
+												<SearchOutlined /> {item.q} en{' '}
+												<a>
+													{item.filters[0].name} {item.filters[0].values[0].name}
+												</a>
+											</li>
+										))}
+									</ul>
+								</>
+							)}
+						</div>
+					</ContentSearchResult>
 				</>
 			)}
 		</>

@@ -21,7 +21,6 @@ export default function ProductDetail() {
 	const [filter, setFilters] = useState([])
 	const [mobile, setMobile] = useState(false)
 	const [image, setImage] = useState()
-	const [visible, setVisible] = useState(true)
 
 	useEffect(() => {
 		if (window.innerWidth < 768) {
