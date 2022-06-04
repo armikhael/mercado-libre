@@ -21,6 +21,7 @@ export default function ProductDetail() {
 	const [result, setResult] = useState<Detail>()
 	const [mobile, setMobile] = useState(false)
 	const [image, setImage] = useState('')
+	const [notFound, setnotFound] = useState(false)
 
 	useEffect(() => {
 		if (window.innerWidth < 768) {
@@ -29,16 +30,16 @@ export default function ProductDetail() {
 		servicesProduct(id).then((response: any) => {
 			if (response) {
 				setResult(response)
-				if (response.detail) {
-					setImage(response.detail.thumbnail_id)
-				}
+				setImage(response.detail.thumbnail_id)
+			} else {
+				setnotFound(true)
 			}
 		})
 	}, [])
 
 	return (
 		<>
-			{result ? (
+			{result && (
 				<div className='ml-base-containert'>
 					<Head
 						title={result.detail.title}
@@ -147,9 +148,8 @@ export default function ProductDetail() {
 					</div>
 					<br />
 				</div>
-			) : (
-				<NotFound />
 			)}
+			{notFound && <NotFound />}
 		</>
 	)
 }
