@@ -9,16 +9,16 @@ import { formatPrice } from '@/utilities/format-price.utilities'
 import Images from '@components/Images'
 import Breadcrumb from '@/components/Breadcrumb'
 import Head from '@components/Head'
+import NotFound from '@pages/not-found'
 
 import Title from './components/Title'
 import { ImageListContent } from './styled.component'
 import { Detail } from './model'
-import services from './services'
+import servicesProduct from './services'
 
 export default function ProductDetail() {
 	let { id } = useParams()
 	const [result, setResult] = useState<Detail>()
-	const [filter, setFilters] = useState([])
 	const [mobile, setMobile] = useState(false)
 	const [image, setImage] = useState('')
 
@@ -26,37 +26,36 @@ export default function ProductDetail() {
 		if (window.innerWidth < 768) {
 			setMobile(true)
 		}
-		services.servicesProduct(id).then((response: any) => {
+		servicesProduct(id).then((response: any) => {
 			if (response) {
 				setResult(response)
-				setImage(response.thumbnail_id)
-				services.servicesCategory(response.category_id).then((response: any) => {
-					setFilters(response.path_from_root)
-				})
+				if (response.detail) {
+					setImage(response.detail.thumbnail_id)
+				}
 			}
 		})
 	}, [])
 
 	return (
 		<>
-			{result && (
+			{result ? (
 				<div className='ml-base-containert'>
 					<Head
-						title={result.title}
+						title={result.detail.title}
 						name={'description'}
-						content={result.description}
+						content={result.detail.description}
 						property={{
-							title: result.title,
+							title: result.detail.title,
 							type: 'product',
-							url: result.permalink,
-							image: `${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${result.thumbnail_id}-F.png`,
+							url: result.detail.permalink,
+							image: `${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${result.detail.thumbnail_id}-F.png`,
 						}}
 					/>
-					<Breadcrumb breadcrumb={filter} />
+					<Breadcrumb breadcrumb={result.categories.path_from_root} />
 					<div className='ml-product-detail-content-main'>
 						<Row>
 							<Col xs={0} sm={0} md={1} lg={1} xl={1}>
-								{result.pictures.slice(0, 6).map((item: any, index: any) => (
+								{result.detail.pictures.slice(0, 6).map((item: any, index: any) => (
 									<ImageListContent
 										id={item.id}
 										name={image}
@@ -69,14 +68,14 @@ export default function ProductDetail() {
 											jp2={`${import.meta.env.VITE_APP_IMAGES}/D_Q_NP_614885-${item.id}-R.jp2`}
 											jxr={`${import.meta.env.VITE_APP_IMAGES}/D_Q_NP_614885-${item.id}-R.jxr`}
 											default={`${import.meta.env.VITE_APP_IMAGES}/D_Q_NP_614885-${item.id}-R.png`}
-											alt={result.title}
-											title={result.title}
+											alt={result.detail.title}
+											title={result.detail.title}
 										/>
 									</ImageListContent>
 								))}
 							</Col>
 							<Col xs={24} sm={12} md={15} lg={15} xl={15}>
-								{mobile && <Title result={result} />}
+								{mobile && <Title result={result.detail} seller={result.seller} />}
 								<div className='ml-product-detail-img-main-content'>
 									<Images
 										classImage={'ml-product-detail-img-main'}
@@ -84,8 +83,8 @@ export default function ProductDetail() {
 										jp2={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${image}-F.jp2`}
 										jxr={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${image}-F.jxr`}
 										default={`${import.meta.env.VITE_APP_IMAGES}/D_NQ_NP_2X_${image}-F.png`}
-										alt={result.title}
-										title={result.title}
+										alt={result.detail.title}
+										title={result.detail.title}
 									/>
 								</div>
 							</Col>
@@ -93,27 +92,27 @@ export default function ProductDetail() {
 							<Col xs={24} sm={12} md={7} lg={7} xl={7} className='ml-product-detail-features-content'>
 								<div className='ml-product-detail-features'>
 									<HeartOutlined className='ml-product-detail-icon-heart' />
-									{!mobile && <Title result={result} />}
-									{result.original_price && (
+									{!mobile && <Title result={result.detail} seller={result.seller} />}
+									{result.detail.original_price && (
 										<div className='ml-product-detail-original-price'>
 											<span>
 												<span>$ </span>
-												{formatPrice(result.original_price, result.currency_id)}
+												{formatPrice(result.detail.original_price, result.detail.currency_id)}
 											</span>
 										</div>
 									)}
 									<div className='ml-product-detail-price'>
 										<span>$</span>
-										{formatPrice(result.price, result.currency_id)}
+										{formatPrice(result.detail.price, result.detail.currency_id)}
 									</div>
 									<div>
 										<span>en </span>
 										<span className='ml-product-detail-installments'>
 											12x <span>$ </span>
-											{formatPrice('25353', result.currency_id)} sin interes
+											{formatPrice('25353', result.detail.currency_id)} sin interes
 										</span>
 									</div>
-									{result.shipping.free_shipping && (
+									{result.detail.shipping.free_shipping && (
 										<div className='ml-product-detail-tags'>
 											<span>
 												<CarOutlined /> Llega gratis mañana
@@ -130,8 +129,8 @@ export default function ProductDetail() {
 							<Col xs={24} sm={24} md={15} lg={15} xl={15}>
 								<div className='ml-product-detail-description-content'>
 									<h3>Descripción</h3>
-									{result.description ? (
-										<p>{result.description}</p>
+									{result.detail.description ? (
+										<p>{result.detail.description}</p>
 									) : (
 										<p>
 											Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
@@ -148,6 +147,8 @@ export default function ProductDetail() {
 					</div>
 					<br />
 				</div>
+			) : (
+				<NotFound />
 			)}
 		</>
 	)

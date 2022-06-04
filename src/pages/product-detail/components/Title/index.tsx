@@ -7,7 +7,7 @@ export default function Title(props: any) {
 				</span>
 			</div>
 			<h1 className='ml-product-detail-title'>{props.result.title}</h1>
-			<p className='ml-product-detail-seller'>Vendido por {props.result.seller_id}</p>
+			<p className='ml-product-detail-seller'>Vendido por {props.seller.seller.nickname}</p>
 		</>
 	)
 }
