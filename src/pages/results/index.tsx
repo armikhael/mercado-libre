@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+import Head from '@components/Head'
 import Breadcrumb from '@/components/Breadcrumb'
 import ProductsList from '@/components/Products/List'
 import NotFound from '@pages/not-found'
@@ -26,6 +27,11 @@ export default function Results() {
 
 	return (
 		<div className='ml-base-containert'>
+			<Head
+				title={`${search} | Mercado Libre Chile`}
+				name={'description'}
+				content={`Envío Gratis de ${search} en Mercado Libre Chile. Encuentre miles de marcas y productos a precios increíbles.`}
+			/>
 			{result.length > 0 && (
 				<>
 					<Breadcrumb breadcrumb={filter} />

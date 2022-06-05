@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Layout from '@components/Layout'
+import Loading from '@components/Loading'
 
 import Home from '@/pages/home'
 import NotFound from '@/pages/not-found'
@@ -13,7 +14,7 @@ export default function Router() {
 	return (
 		<BrowserRouter>
 			<Layout>
-				<Suspense>
+				<Suspense fallback={<Loading />}>
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/product-detail/:id' element={<ProductDetail />} />
