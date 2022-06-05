@@ -1,5 +1,5 @@
 .ml-header-logo-main {
-	background-image: url(#{$ibbPath}/TR66GH3/logo-large-plus-2x.png);
+	background-image: url(#{$imgPath}/logo__large_plus@2x.png);
 	background-size: 134px 34px;
 	height: 34px;
 	width: 134px;
@@ -8,7 +8,7 @@
 	top: 2px;
 
 	@media only screen and (max-width: $mediaLaptopsLarge) {
-		background-image: url(#{$ibbPath}/17nyGPF/logo-small-2x.png);
+		background-image: url(#{$imgPath}/logo__small@2x.png);
 		background-size: 44px 32px;
 		width: 44px;
 		height: 32px;

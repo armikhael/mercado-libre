@@ -149,7 +149,7 @@ export default function ProductDetail() {
 					<br />
 				</div>
 			)}
-			{notFound && <NotFound />}
+			{notFound && <NotFound description={'Puedo que el producto que buscas ya fuera vendio'} />}
 		</>
 	)
 }

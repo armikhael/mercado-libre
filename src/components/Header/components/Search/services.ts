@@ -5,7 +5,7 @@ export default async function servicesAutosuggest(item: any) {
 	let responses
 	await axios({
 		method: 'GET',
-		url: `${import.meta.env.VITE_APP_API_MERCADOLIBRE}/sites/${import.meta.env.VITE_APP_SITE_ID}/autosuggest`,
+		url: `${import.meta.env.VITE_APP_API_MERCADOLIBRE_SEARCH}/sites/${import.meta.env.VITE_APP_SITE_ID}/autosuggest`,
 		params: {
 			showFilters: true,
 			limit: 6,
