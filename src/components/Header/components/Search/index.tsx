@@ -3,22 +3,32 @@ import { useState } from 'react'
 import { Input, Button, Form } from 'antd'
 import { SearchOutlined, ClockCircleOutlined } from '@ant-design/icons'
 
-import { ContentSearchResult } from './styled.component'
+import { ContentSearchResult, SearchResultLi } from './styled.component'
+import { compareArraySearch } from './utilities'
 import servicesAutosuggest from './services'
 
 export default function SearchInput() {
 	const [form] = Form.useForm()
 	const [result, setResult] = useState([])
+	const [list] = useState<any>(JSON.parse(localStorage.getItem('saveSearch') || '[]'))
 	const [focus, setFocus] = useState(false)
 
 	const handleSearch = (item: any) => {
 		if (item) {
 			servicesAutosuggest(item).then((response: any) => {
 				if (response) {
-					setResult(response.suggested_queries)
+					let resultCompare = compareArraySearch(list, response.suggested_queries)
+					setResult(resultCompare)
 				}
 			})
 		}
+	}
+
+	const handleSaveSearch = (item: string) => {
+		//setList((list: any) => [...list, { search: item }])
+		let array = JSON.parse(localStorage.getItem('saveSearch') || '[]')
+		array.push(item)
+		localStorage.setItem('saveSearch', JSON.stringify(array.slice(-5)))
 	}
 
 	const handleSumit = (item: any) => {
@@ -57,10 +67,15 @@ export default function SearchInput() {
 						<div className='ml-header-search-result-content'>
 							<ul>
 								{result.slice(0, 6).map((item: any, index: any) => (
-									<a className='ml-header-search-result-link' href={`/results/${item.q}`} key={index}>
-										<li>
-											<ClockCircleOutlined /> {item.q}
-										</li>
+									<a
+										className='ml-header-search-result-link'
+										onClick={() => handleSaveSearch(item.q)}
+										key={index}
+										href={`/results/${item.q}`}>
+										<SearchResultLi bold={item.exists}>
+											{item.exists ? <ClockCircleOutlined /> : <SearchOutlined />}
+											{item.q}
+										</SearchResultLi>
 									</a>
 								))}
 							</ul>
