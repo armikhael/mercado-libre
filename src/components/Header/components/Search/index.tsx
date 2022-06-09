@@ -4,34 +4,32 @@ import { Input, Button, Form } from 'antd'
 import { SearchOutlined, ClockCircleOutlined } from '@ant-design/icons'
 
 import { ContentSearchResult, SearchResultLi } from './styled.component'
-import { compareArraySearch } from './utilities'
+import { compareArraySearch } from './utilities/compare-array.utilities'
+import { paseJson } from './utilities/parse-json.utilities'
 import servicesAutosuggest from './services'
 
 export default function SearchInput() {
 	const [form] = Form.useForm()
 	const [result, setResult] = useState([])
-	const [list] = useState<any>(JSON.parse(localStorage.getItem('saveSearch') || '[]'))
+	const [list] = useState<any>(paseJson(localStorage.getItem('saveSearch'), 'saveSearch'))
 	const [focus, setFocus] = useState(false)
 
-	const handleSearch = (item: any) => {
+	const handleSearch = (item: string) => {
 		if (item) {
 			servicesAutosuggest(item).then((response: any) => {
 				if (response) {
-					let resultCompare = compareArraySearch(list, response.suggested_queries)
-					setResult(resultCompare)
+					setResult(compareArraySearch(list, response.suggested_queries))
 				}
 			})
 		}
 	}
 
 	const handleSaveSearch = (item: string) => {
-		//setList((list: any) => [...list, { search: item }])
-		let array = JSON.parse(localStorage.getItem('saveSearch') || '[]')
-		array.push(item)
-		localStorage.setItem('saveSearch', JSON.stringify(array.slice(-5)))
+		list.push(item)
+		localStorage.setItem('saveSearch', JSON.stringify(list.slice(-5)))
 	}
 
-	const handleSumit = (item: any) => {
+	const handleSumit = (item: string) => {
 		if (item.search) {
 			window.location.href = window.location.origin + `/results/${item.search}`
 		}

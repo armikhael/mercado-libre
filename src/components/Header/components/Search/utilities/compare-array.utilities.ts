@@ -6,6 +6,5 @@ export const compareArraySearch = (searchLocal: any, searchResult: any) => {
 			}
 		})
 	})
-	let array: any = searchResult
-	return array
+	return searchResult
 }
