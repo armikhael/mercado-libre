@@ -9,6 +9,7 @@
 .ml-header-img-banner {
 	max-width: 340px;
 	max-height: 39px;
+	margin-top: 1px;
 	@media only screen and (max-width: $mediaLaptopsLarge) {
 		display: none;
 	}

@@ -5,7 +5,8 @@
 	width: 134px;
 	background-repeat: no-repeat;
 	position: absolute;
-	top: 2px;
+	top: 3px;
+	margin-left: 10px;
 
 	@media only screen and (max-width: $mediaLaptopsLarge) {
 		background-image: url(#{$imgPath}/logo__small@2x.png);
